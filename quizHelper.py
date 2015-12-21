@@ -21,9 +21,32 @@ def err():
     usage()
     sys.exit()
 
+
+
+def definition(string):
+    string = string.split("\n")
+    string = [f.split(":") for f in string]
+    try:
+        num = int(raw_input("Enter how many questions: "))
+    except ValueError:
+        print "Invalid input. Please enter a number"
+        sys.exit()
+
+    switch = 0 #0 define the word
+                #1 what is it
+    length = len(string)
+    for i in range(num):
+        switch = random.randint(0, 1)
+        question = random.randint(0, length)
+        question = string[question]
+        if switch == 0:
+            print "Define: {}".format(question[0])
+        else:
+            print "{}".format(question[1])
+        answer = raw_input("Answer: ")
+
+
 def main(argv):
-
-
     definition = False
     QA = False
     file1 = ""
@@ -46,17 +69,19 @@ def main(argv):
         else:
             err()
     
-    if not file1 or os.path.isfile(file1)
+    if not file1 or os.path.isfile(file1):
         print "File does not exists"
         err()
 
-
+    file1 = open(file1, "r")
+    string = file1.read()
+    file1.close()
     if definition and QA:
-        QuizAll()
+        quizAll(string)
     elif definition:
-        definition()
+        definition(string)
     elif QA:
-        question()
+        question(string)
 
 
 if __name__ == "__main__":
