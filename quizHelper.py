@@ -1,6 +1,7 @@
 import getopt
 import random
 import sys
+import os
 #-d = sheet for definitions
 #-q = Q/A
 #-a = all
@@ -10,8 +11,8 @@ import sys
 
 def usage():
     print """Commands:
-    -d definition quiz
-    -q questions and answers quiz
+    -d definition quiz (format: word:definition)
+    -q questions and answers quiz (format: question)
     -a all
     -i input file
     """
@@ -25,6 +26,7 @@ def main(argv):
 
     definition = False
     QA = False
+    file1 = ""
     
     try:
         opts, args = getopt.getopt(argv, "dqai", ["definition", "questions", "all", "input"])
@@ -43,6 +45,11 @@ def main(argv):
             QA = True
         else:
             err()
+    
+    if not file1 or os.path.isfile(file1)
+        print "File does not exists"
+        err()
+
 
     if definition and QA:
         QuizAll()
